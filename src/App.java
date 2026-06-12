@@ -15,6 +15,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 import model.CalculadoraCusto;
 import model.Densidade;
 import model.Impressora3D;
@@ -543,159 +544,55 @@ public class App extends Application {
                 root.getChildren().add(cabecalho);
                 root.setAlignment(Pos.CENTER);
 
-                // ESTILIZAÇÃO GERAL
+                colunaEsquerda.getStyleClass().add("coluna");
+                colunaDireita.getStyleClass().add("coluna");
 
-                root.setStyle("""
-                                    -fx-background-color: #20242e;
-                                """);
+                lblTitulo.getStyleClass().add("titulo");
+                lblTituloResumo.getStyleClass().add("titulo");
 
-                // COLUNAS
+                lblResumoCusto.getStyleClass().add("subtitulo");
+                lblTotal.getStyleClass().add("total");
 
-                colunaEsquerda.setStyle("""
-                                    -fx-background-color: #111827;
-                                    -fx-background-radius: 10;
-                                    -fx-border-color: #2563EB;
-                                    -fx-border-radius: 10;
-                                    -fx-padding: 20;
-                                """);
+                btnCalcular.getStyleClass().add("botao");
 
-                colunaDireita.setStyle("""
-                                    -fx-background-color: #111827;
-                                    -fx-background-radius: 10;
-                                    -fx-border-color: #2563EB;
-                                    -fx-border-radius: 10;
-                                    -fx-padding: 20;
-                                """);
+                Label[] labels = {
+                                lblSelecionado, lblSelecionadoMaterial, lblModelo,
+                                lblDescricao, lblPotencia, lblMaterial,
+                                lblFalha, lblMaquina, lblEnergia,
+                                lblMaoObra, lblManutencao,
+                                lblcampoNomeProjeto, lblcampoDescricao,
+                                lblQtdMaterial, lblTempo,
+                                lblSelecionarMaterial, lblcbRisco,
+                                lblValorEnergia, lblValorMaoObra,
+                                lblMargemLucro, lblTaxaFalha,
+                                lblCustoManutencao, lblPix,
+                                lblDinheiro, lblDebito, lblCredito
+                };
 
-                cabecalho.setSpacing(30);
+                for (Label lbl : labels) {
+                        lbl.getStyleClass().add("label-padrao");
+                }
 
-                // TÍTULOS
+                TextInputControl[] campos = {
+                                tfCampoNomeProjeto, tfQtdMaterial, tfTempo,
+                                tfValorEnergia, tfValorMaoObra,
+                                tfMargemLucro, tfTaxaFalha,
+                                tfCustoManutencao, tfPix,
+                                tfDinheiro, tfDebito, tfCredito,
+                                txtCampoDescricao
+                };
 
-                lblTitulo.setStyle("""
-                                    -fx-text-fill: #60A5FA;
-                                    -fx-font-size: 22px;
-                                    -fx-font-weight: bold;
-                                """);
+                for (TextInputControl campo : campos) {
+                        campo.getStyleClass().add("campo");
+                }
 
-                lblTituloResumo.setStyle("""
-                                    -fx-text-fill: #60A5FA;
-                                    -fx-font-size: 22px;
-                                    -fx-font-weight: bold;
-                                """);
-
-                lblResumoCusto.setStyle("""
-                                    -fx-text-fill: #60A5FA;
-                                    -fx-font-size: 18px;
-                                    -fx-font-weight: bold;
-                                """);
-
-                lblTotal.setStyle("""
-                                    -fx-text-fill: #22C55E;
-                                    -fx-font-size: 24px;
-                                    -fx-font-weight: bold;
-                                """);
-
-                // LABELS
-
-                String estiloLabel = """
-                                    -fx-text-fill: white;
-                                    -fx-font-size: 14px;
-                                """;
-                lblSelecionado.setStyle(estiloLabel);
-                linhaNomeProjeto.setStyle(estiloLabel);
-                lblSelecionado.setStyle(estiloLabel);
-                lblSelecionadoMaterial.setStyle(estiloLabel);
-                lblModelo.setStyle(estiloLabel);
-                lblDescricao.setStyle(estiloLabel);
-                lblPotencia.setStyle(estiloLabel);
-                lblMaterial.setStyle(estiloLabel);
-                lblFalha.setStyle(estiloLabel);
-                lblMaquina.setStyle(estiloLabel);
-                lblEnergia.setStyle(estiloLabel);
-                lblMaoObra.setStyle(estiloLabel);
-                lblManutencao.setStyle(estiloLabel);
-                lblcampoNomeProjeto.setStyle(estiloLabel);
-                lblcampoDescricao.setStyle(estiloLabel);
-                lblQtdMaterial.setStyle(estiloLabel);
-                lblTempo.setStyle(estiloLabel);
-                lblSelecionarMaterial.setStyle(estiloLabel);
-                lblcbRisco.setStyle(estiloLabel);
-                lblValorEnergia.setStyle(estiloLabel);
-                lblValorMaoObra.setStyle(estiloLabel);
-                lblMargemLucro.setStyle(estiloLabel);
-                lblTaxaFalha.setStyle(estiloLabel);
-                lblCustoManutencao.setStyle(estiloLabel);
-                cbMateriaisImpressao.setStyle(estiloLabel);
-                cbRisco.setStyle(estiloLabel);
-                cbModeloImpressora.setStyle(estiloLabel);
-                lblPix.setStyle(estiloLabel);
-                lblDinheiro.setStyle(estiloLabel);
-                lblDebito.setStyle(estiloLabel);
-                lblCredito.setStyle(estiloLabel);
-                // CAMPOS
-
-                String estiloCampo = """
-                                    -fx-background-color: #1F2937;
-                                    -fx-text-fill: white;
-                                    -fx-border-color: #374151;
-                                    -fx-border-radius: 5;
-                                    -fx-background-radius: 5;
-                                    -fx-font-size: 14px;
-                                    -fx-pref-height: 40;
-                                """;
-
-                tfCampoNomeProjeto.setStyle(estiloCampo);
                 tfCampoNomeProjeto.setPrefHeight(100);
-
-                tfQtdMaterial.setStyle(estiloCampo);
-                tfQtdMaterial.setPrefHeight(40);
-
-                tfTempo.setStyle(estiloCampo);
-                tfTempo.setPrefHeight(40);
-
-                tfValorEnergia.setStyle(estiloCampo);
-                tfValorEnergia.setPrefHeight(40);
-
-                tfValorMaoObra.setStyle(estiloCampo);
-                tfValorMaoObra.setPrefHeight(40);
-
-                tfMargemLucro.setStyle(estiloCampo);
-                tfMargemLucro.setPrefHeight(40);
-
-                tfTaxaFalha.setStyle(estiloCampo);
-                tfTaxaFalha.setPrefHeight(40);
-
-                tfCustoManutencao.setStyle(estiloCampo);
-                tfCustoManutencao.setPrefHeight(40);
-
-                tfPix.setStyle(estiloCampo);
-                tfPix.setPrefHeight(40);
-
-                tfDinheiro.setStyle(estiloCampo);
-                tfDinheiro.setPrefHeight(40);
-
-                tfDebito.setStyle(estiloCampo);
-                tfDebito.setPrefHeight(40);
-
-                tfCredito.setStyle(estiloCampo);
-                tfCredito.setPrefHeight(40);
-
-                ///txtCampoDescricao.setStyle(estiloCampo);
                 txtCampoDescricao.setPrefHeight(80);
 
-                // BOTÃO
-
-                btnCalcular.setStyle("""
-                                    -fx-background-color: #2563EB;
-                                    -fx-text-fill: white;
-                                    -fx-font-size: 15px;
-                                    -fx-font-weight: bold;
-                                    -fx-background-radius: 8;
-                                    -fx-padding: 10 20 10 20;
-                                """);
-
                 Scene scene = new Scene(root, 1000, 600);
-
+                scene.getStylesheets().add(
+                                getClass().getResource("/resources/styles.css").toExternalForm());
+                System.out.println(getClass().getResource("/resources/styles.css"));
                 primaryStage.setTitle("Calculadora de Custos 3D");
                 primaryStage.setScene(scene);
                 primaryStage.show();
